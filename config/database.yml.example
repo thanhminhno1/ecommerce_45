@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  host: 127.0.0.1
+  port: 3306
+
+development:
+  <<: *default
+  database: ecommerce_develop
+
+test:
+  <<: *default
+  database: ecommerce_test
+
+production:
+  <<: *default
+
