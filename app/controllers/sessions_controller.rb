@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to user_path
       else
-        redirect_to product_path
+        redirect_to root_path
       end
     else
       flash[:danger] = t("controller.session.invalid_em_pw")
@@ -22,6 +22,6 @@ class SessionsController < ApplicationController
     session.delete :user_id
     @current_user = nil
     flash[:success] = t("controller.session.logout")
-    redirect_to login_path
+    redirect_to root_path
   end
 end

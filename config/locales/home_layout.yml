@@ -1,0 +1,25 @@
+en:
+  layout:
+    home:
+      history: "The standard chunk of Lorem Ipsum used since the 1500s is
+        reproduced below forthose interested. Sections 1.10.32 and 1.10.33 from
+        'de Finibus Bonorum etMalorum' by Cicero are also reproduced in their
+        exact original form,accompanied by English versions from the 1914
+        translation by H. Rackham."
+      history_title: "The standard chunk of Lorem"
+      copyright: "Copyright © 2018 From Bootstrap Ecommerce Shopping Template"
+      manufactures: "Manufactures"
+      add_to_cart: "Add to cart"
+      list_product: "List Product"
+      trend_product: "Trend Products"
+      quick_view: "QUICK VIEW"
+      home: "Home"
+      my_account: "My Account"
+      register: "Free Register"
+      contact_us: "Contact us"
+      item: "Item"
+      support: "Support (24/7) :  0800 1234 678"
+      already_account: "Already have an account?"
+      view: "VIEW"
+      search: "Search"
+      title: "Ecommerce 45"

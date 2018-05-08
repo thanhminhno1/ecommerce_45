@@ -1,0 +1,20 @@
+.container
+  = render "layouts/home_header"
+  .row
+    = render "layouts/sidebar"
+    .col-md-9
+      .well.np
+        = render "layouts/slide"
+      .well.well-small
+        = render "layouts/trend"
+      .well.well-small
+        h3
+          = t("layout.home.list_product")
+        hr.soften/
+        .row.list-group
+          .thumbnails
+            = render partial: "product", collection: @products, as: :product
+        .row.list-group
+          .pull-right
+            = paginate @products, theme: "twitter-bootstrap-3"
+  = render "layouts/section"
