@@ -1,7 +1,7 @@
 #sidebar.col-md-3
   .well.well-small
     ul.nav.nav-list.nav-category
-      -@categories.each do |category|
+      -list_category.each do |category|
         =draw_sidebar(category)
   br
   ul.nav.nav-list.promowrapper

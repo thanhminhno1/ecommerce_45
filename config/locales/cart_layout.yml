@@ -1,0 +1,12 @@
+en:
+  layout:
+    cart:
+      check_out: "Check Out"
+      product: "Product"
+      description: "Description"
+      unit_price: "Unit price"
+      qty: "Qty"
+      total: "Total"
+      total_product: "Total products:"
+      continue_shopping: "Continue Shopping"
+      order: "Order"

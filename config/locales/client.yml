@@ -1,0 +1,4 @@
+en:
+  client:
+    comfirm:
+      product_not_exits: "Product does not exist, redirect to Home page ?"
