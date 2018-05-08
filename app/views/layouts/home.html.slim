@@ -1,0 +1,34 @@
+head
+  title = t("layout.home.title")
+  = csrf_meta_tags
+
+  = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+  = javascript_include_tag "application", "data-turbolinks-track": "reload"
+body
+  .navbar.navbar-fixed-top
+    .topNav
+      .container
+        .alignR
+          a.active href="index.html"
+            span.fa.fa-home
+            = t("layout.home.home")
+          a href="#"
+            span.fa.fa-user
+            = t("layout.home.my_account")
+          a href="register.html"
+            span.fa.fa-user-edit
+            = t("layout.home.free_register")
+          a href="contact.html"
+            span.fa.fa-envelope
+            = t("layout.home.contact_us")
+          a href="cart.html"
+            span.fa.fa-shopping-cart
+            | 2 #{t("layout.home.item")} -
+            span.badge.badge-warning $448.42
+  = yield
+  .copyright
+    .container
+      span
+        = t("layout.home.copyright")
+  a.gotop href="#"
+    i.fa.fa-angle-double-up

@@ -30,6 +30,7 @@ gem "jbuilder", "~> 2.5"
 # gem "capistrano-rails", group: :development
 
 gem "bcrypt", "~> 3.1.7"
+gem "bootstrap-kaminari-views"
 gem "bootstrap-sass", "~> 3.3.6"
 gem "config"
 gem "font-awesome-rails"

@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   has_many :reviews
   has_many :order_details
 
-  has_attached_file :image,
+  has_attached_file :image, default_url: "/images/image_:style.jpg",
     styles: {medium: Settings.product.size_medium,
              thumb: Settings.product.size_thumb}
 
@@ -14,4 +14,6 @@ class Product < ApplicationRecord
     length: {maximum: Settings.product.name_max_length}
   validates :description, presence: true,
     length: {maximum: Settings.product.description_max_length}
+
+  scope :ordered_by_name, ->{order name: :asc}
 end

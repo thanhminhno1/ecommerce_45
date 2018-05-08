@@ -1,0 +1,11 @@
+en:
+  layout:
+    session:
+      login: "Login"
+      logout: "Logout"
+      close: "Close"
+      sign_in: "Sign in"
+      forget_password: "Forget the password ?"
+      email: "Email address"
+      password: "Password"
+      keep_login: "keep me logged-in"

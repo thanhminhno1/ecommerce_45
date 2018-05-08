@@ -1,0 +1,39 @@
+#sidebar.col-md-3
+  .well.well-small
+    ul.nav.nav-list.nav-category
+      -@categories.each do |category|
+        =draw_sidebar(category)
+  br
+  ul.nav.nav-list.promowrapper
+    li
+      .thumbnail
+        a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
+          span.fa.fa-search-plus
+          = t("layout.home.quick_view")
+        = image_tag "bootstrap-ecommerce-templates"
+        .caption
+          h4
+            a.btn.btn-lg.btn-default href="#"  = t("layout.home.view")
+            span.pull-right $22.00
+    li style="border:0"   
+    li
+      .thumbnail
+        a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
+          span.fa.fa-search-plus
+          = t("layout.home.quick_view")
+        = image_tag "shopping-cart-template"
+        .caption
+          h4
+            a.btn.btn-lg.btn-default href="#"  = t("layout.home.view")
+            span.pull-right $22.00
+    li style="border:0"   
+    li
+      .thumbnail
+        a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
+          span.fa.fa-search-plus
+          = t("layout.home.quick_view")
+        = image_tag "bootstrap-template"
+        .caption
+          h4
+            a.btn.btn-lg.btn-default href="#"  = t("layout.home.view")
+            span.pull-right $22.00
