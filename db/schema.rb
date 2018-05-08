@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20180507092309) do
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.integer "status_cd"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20180507092309) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.integer "status_cd"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_suggests_on_user_id"
@@ -102,11 +102,11 @@ ActiveRecord::Schema.define(version: 20180507092309) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.string "name"
     t.string "address"
     t.string "phone_number"
-    t.integer "role_cd"
+    t.integer "role", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

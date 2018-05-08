@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_secure_password
+  before_save :downcase_email
+
   has_many :comments, dependent: :destroy
   has_many :suggests, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -13,7 +16,8 @@ class User < ApplicationRecord
   validates :name, presence: true,
     length: {maximum: Settings.user.name_max_length}
   validates :email, presence: true, uniqueness: {case_sensitive: false},
-    length: {maximum: Settings.user.email_max_length}
+    length: {maximum: Settings.user.email_max_length},
+    format: {with: VALID_EMAIL_REGEX}
   validates :password, presence: true,
     length: {minimum: Settings.user.min_password}
   validates :phone_number, presence: true,
@@ -21,4 +25,8 @@ class User < ApplicationRecord
     format: {with: VALID_PHONE_NUMBER_REGEX}
   validates :address, presence: true,
     length: {maximum: Settings.user.address_max_length}
+
+  def downcase_email
+    self.email = email.downcase
+  end
 end
