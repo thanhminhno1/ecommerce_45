@@ -5,7 +5,7 @@ class Suggest < ApplicationRecord
 
   has_attached_file :image,
     styles: {medium: Settings.suggest.size_medium,
-             thumb: Setting.suggest.size_thumb}
+             thumb: Settings.suggest.size_thumb}
 
   validates_attachment :image,
     content_type: {content_type: Settings.suggest.image_accept}

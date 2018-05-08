@@ -1,0 +1,19 @@
+.row
+  .col-md-6.col-md-offset-3
+    -if current_user
+      h1 = current_user.name
+      =link_to "#{t('layout.session.logout')}", logout_path, method: :delete
+    -else
+      = form_for(:session, url: login_path, method: :post) do |f|
+        - if flash
+          - flash.each do |type, message|
+            div class="text-center #{flash_class(type.to_sym)} alert-dismissible" role="alert"
+              button class="close" data-dismiss="alert"
+                span aria-hidden="true" ×
+                span class="sr-only" = t('layout.session.close')
+              = message
+        = f.label :email
+        = f.email_field :email, class: "form-control"
+        = f.label :password
+        = f.password_field :password, class: "form-control"
+        = f.submit "#{t('layout.session.login')}", class: "btn btn-primary"

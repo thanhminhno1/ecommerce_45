@@ -4,7 +4,7 @@ class CreateSuggests < ActiveRecord::Migration[5.1]
       t.belongs_to :user
       t.text :content
       t.attachment :image
-      t.integer :status_cd
+      t.integer :status
       t.timestamps
     end
   end
