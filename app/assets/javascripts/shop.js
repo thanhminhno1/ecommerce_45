@@ -22,13 +22,5 @@ $(document).ready(function() {
 			$('.gotop').fadeOut(200);
 		}
 	});
-// Scroll Page to Top when clicked on 'go to top' button
-	$('.gotop').click(function(event){
-		event.preventDefault();
-
-		$.scrollTo('#gototop', 1500, {
-    	easing: 'easeOutCubic'
-    });
-	});
 
 });
