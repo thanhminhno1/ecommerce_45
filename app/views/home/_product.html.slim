@@ -1,0 +1,15 @@
+.item.col-xs-4.col-lg-4
+  .thumbnail
+    a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
+      span.fa.fa-search-plus
+      = t("layout.home.quick_view")
+    a href="#"
+      = image_tag "b"
+    .caption.cntr
+      p = product.name
+      p
+        strong
+          |$ #{product.price}
+      h4
+        a.btn.btn-danger.btn-lg href="#" title=("#{t("layout.home.add_to_cart")}") = t("layout.home.add_to_cart")
+      br.clr/

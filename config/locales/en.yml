@@ -5,8 +5,3 @@ en:
       login_w_user: "Success with user"
       invalid_em_pw: "Invalid email/password"
       logout: "Success Logout"
-  layout:
-    session:
-      login: "Login"
-      logout: "Logout"
-      close: "Close"

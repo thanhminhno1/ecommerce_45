@@ -1,0 +1,76 @@
+  #gototop
+  header#header
+    .row
+      .col-md-4
+        h1
+          a.logo href="#"
+            = image_tag "logo-bootstrap-shoping-cart"
+      .col-md-4
+      .col-md-4.alignR
+        p
+          br/
+          strong = t("layout.home.support")
+  nav.navbar.navbar-inverse role="navigation"
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
+          span.sr-only
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            a href="#"
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" href="#"
+              span.caret
+            ul.dropdown-menu role="menu"
+              li
+                a href="#"
+              li.divider
+              li
+                a href="#"
+        form.navbar-form.navbar-left role="search"
+          .input-group
+            input.form-control name="q" placeholder="#{t("layout.home.search")}" type="text" /
+            .input-group-btn
+              button.btn.btn-default.btn-search type="submit"
+                i.fa.fa-search-plus.fa-lg
+        ul.nav.navbar-nav.navbar-right
+          li
+            p.navbar-text = t("layout.home.already_account")
+          -if current_user
+            li.dropdown
+              a.dropdown-toggle data-toggle="dropdown" href="#"
+                b = current_user.name
+                span.caret
+              ul.dropdown-menu#logout-dp
+                li
+                  .row
+                    .pull-right
+                      =link_to "#{t('layout.session.logout')}", logout_path, method: :delete, class: "btn btn-default"
+          -else
+            li.dropdown
+              a.dropdown-toggle data-toggle="dropdown" href="#"
+                b = t("layout.session.login")
+                span.caret
+              ul#login-dp.dropdown-menu
+                li
+                  .row
+                    .col-md-12
+                      = form_for :session, url: login_path, method: :post, html: {id: "login", class: "form"} do |f|
+                        .form-group
+                          label.sr-only = t("layout.session.email")
+                          = f.email_field :email, class: "form-control", place_holder: t("layout.session.email")
+                        .form-group
+                          label.sr-only = t("layout.session.password")
+                          = f.password_field :password, class: "form-control", place_holder: t("layout.session.password")
+                          .help-block.text-right
+                            a href="" = t("layout.session.forget_password")
+                        .form-group
+                          = f.submit "#{t('layout.session.sign_in')}", class: "btn btn-primary btn-block"
+                        .checkbox
+                          label
+                            input type="checkbox"
+                            = t("layout.session.keep_login")
