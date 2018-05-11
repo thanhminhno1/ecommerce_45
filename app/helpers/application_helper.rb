@@ -3,6 +3,10 @@ module ApplicationHelper
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
+  def current_cart
+    @current_cart ||= Product.product_in_cart(session[:cart])
+  end
+
   def flash_class level
     case level
     when :notice then "alert alert-info"
@@ -31,5 +35,9 @@ module ApplicationHelper
       end
       concat category.name
     end
+  end
+
+  def list_category
+    @categories = Category.list_parents.ordered_by_name
   end
 end

@@ -1,0 +1,14 @@
+tr
+  td.text-center
+    = image_tag product.image.url(:medium)
+  td.text-center
+    = product.name
+    br>/
+    = product.description
+    br/
+  td.text-center.price = product.price
+  td.text-center
+      input class="quantity" type="number" value="1" style="max-width:60px"
+      button class="btn btn-danger cart_remove" data-href="#{remove_cart_path(product.id)}"
+        span.fa.fa-trash
+  td.text-center.total_in_row = product.price

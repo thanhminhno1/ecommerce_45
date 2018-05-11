@@ -1,0 +1,32 @@
+.container
+  = render "layouts/home_header"
+  .row
+    = render "layouts/sidebar"
+    .col-md-9
+      .row
+        .span12
+          .well.well-small
+            h1
+              = t("layout.cart.checkout")
+            hr.soften/
+            table.table.table-bordered.table-condensed
+              thead
+                tr
+                  th.text-center = t("layout.cart.product")
+                  th.text-center = t("layout.cart.description")
+                  th.text-center = t("layout.cart.unit_price")
+                  th.text-center = t("layout.cart.qty")
+                  th.text-center = t("layout.cart.total")
+              tbody
+                = render partial: "cart_item", collection: current_cart, as: :product
+                tr
+                  td.alignR colspan="4" = t("layout.cart.total_product")
+                  td.total
+            br/
+            = link_to root_path, class: "shopBtn btn-large"
+              span.icon-arrow-left
+              = t("layout.cart.continue_shopping")
+            a.shopBtn.btn-large.pull-right href="login.html"
+              = t("layout.cart.order")
+              span.icon-arrow-right
+  = render "layouts/section"

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
-  def new; end
+  before_action :set_product_and_ensure_cart, only: [:add_cart, :remove_cart]
 
-  def edit; end
+  def new; end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
@@ -23,5 +23,23 @@ class SessionsController < ApplicationController
     @current_user = nil
     flash[:success] = t("controller.session.logout")
     redirect_to root_path
+  end
+
+  def add_cart
+    session[:cart] << @product.id if session[:cart].exclude?(@product.id)
+    render json: {product: @product.to_json, session: session[:cart]}
+  end
+
+  def remove_cart
+    session[:cart].delete @product.id if session[:cart].include?(@product.id)
+    render json: {product: @product.to_json, session: session[:cart]}
+  end
+
+  private
+
+  def set_product_and_ensure_cart
+    @product = Product.find_by id: params[:id_product]
+    session[:cart] ||= []
+    render json: {product: nil, session: session[:cart]} unless @product
   end
 end

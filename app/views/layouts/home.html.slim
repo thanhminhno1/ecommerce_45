@@ -9,7 +9,7 @@ body
     .topNav
       .container
         .alignR
-          a.active href="index.html"
+          = link_to root_path, class: "active"
             span.fa.fa-home
             = t("layout.home.home")
           a href="#"
@@ -21,10 +21,10 @@ body
           a href="contact.html"
             span.fa.fa-envelope
             = t("layout.home.contact_us")
-          a href="cart.html"
+          = link_to cart_path
             span.fa.fa-shopping-cart
-            | 2 #{t("layout.home.item")} -
-            span.badge.badge-warning $448.42
+            span.number-item
+              | #{current_cart.count} Items
   = yield
   .copyright
     .container

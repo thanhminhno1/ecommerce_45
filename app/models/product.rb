@@ -16,4 +16,5 @@ class Product < ApplicationRecord
     length: {maximum: Settings.product.description_max_length}
 
   scope :ordered_by_name, ->{order name: :asc}
+  scope :product_in_cart, ->(cart){where id: cart}
 end
