@@ -5,3 +5,4 @@ en:
       login_w_user: "Success with user"
       invalid_em_pw: "Invalid email/password"
       logout: "Success Logout"
+      login_success: "Login Success"

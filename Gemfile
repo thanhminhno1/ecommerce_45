@@ -29,9 +29,11 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 
+gem "activerecord-import"
 gem "bcrypt", "~> 3.1.7"
 gem "bootstrap-kaminari-views"
 gem "bootstrap-sass", "~> 3.3.6"
+gem "bootstrap_notify"
 gem "config"
 gem "font-awesome-rails"
 gem "i18n-js"
@@ -41,7 +43,7 @@ gem "mysql2"
 gem "paperclip"
 gem "rubocop"
 gem "simple_enum"
-gem "slim-rails"
+gem "slim-rails", "3.1.1"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

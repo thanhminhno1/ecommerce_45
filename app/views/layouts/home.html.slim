@@ -5,6 +5,7 @@ head
   = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
   = javascript_include_tag "application", "data-turbolinks-track": "reload"
 body
+  .notifications.top-right
   .navbar.navbar-fixed-top
     .topNav
       .container
@@ -24,7 +25,8 @@ body
           = link_to cart_path
             span.fa.fa-shopping-cart
             span.number-item
-              | #{current_cart.count} Items
+              -if current_cart
+                | #{current_cart.count } #{t("layout.home.item")}
   = yield
   .copyright
     .container
@@ -32,3 +34,9 @@ body
         = t("layout.home.copyright")
   a.gotop href="#"
     i.fa.fa-angle-double-up
+- if flash
+  -flash.each do |type, message|
+    javascript:
+      $('.top-right').notify({
+        message: { text: "#{message}" }
+      }).show();

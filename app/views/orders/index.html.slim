@@ -1,0 +1,36 @@
+.container
+  = render "layouts/home_header"
+  .row
+    = render "layouts/sidebar"
+    .col-md-9
+      .row
+        .span12
+          .well
+            = form_for @order, url: orders_path, html: {method: :post, class: "form-horizontal"} do |f|
+              h3.text-center = t("layout.order.order_details")
+              .form-group
+                label.control-label.col-sm-2
+                  = t("layout.order.name")
+                  sup *
+                .col-sm-10
+                  = f.text_field :name, class: "form-control", required: "true"
+              .form-group
+                label.control-label.col-sm-2
+                  = t("layout.order.phone_number")
+                  sup *
+                .col-sm-10
+                  = f.text_field :phone_number, class: "form-control", required: "true"
+              .form-group
+                label.control-label.col-sm-2
+                  = t("layout.order.address")
+                  sup *
+                .col-sm-10
+                  = f.text_field :address, class: "form-control", required: "true"
+
+              .form-group
+                = link_to root_path, class: "shopBtn btn-large"
+                  span.icon-arrow-left
+                  = t("layout.cart.continue_shopping")
+                .pull-right
+                  input.shopBtn.exclusive name="submitAccount" type="submit" value="Order"
+  = render "layouts/section"
