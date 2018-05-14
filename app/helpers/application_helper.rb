@@ -1,11 +1,4 @@
 module ApplicationHelper
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
-
-  def current_cart
-    @current_cart ||= Product.product_in_cart(session[:cart])
-  end
 
   def flash_class level
     case level
@@ -39,5 +32,18 @@ module ApplicationHelper
 
   def list_category
     @categories = Category.list_parents.ordered_by_name
+  end
+
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
+
+  def current_cart
+    return unless session[:cart]
+    @current_cart ||= Product.product_in_cart(session[:cart].keys)
+    @current_cart.map do |item|
+      item.quantity_in_cart = session[:cart][item.id.to_s]
+    end
+    @current_cart
   end
 end

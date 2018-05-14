@@ -1,0 +1,10 @@
+en:
+  layout:
+    order:
+      order_details: "Order Details"
+      name: "Name"
+      phone_number: "Phone Number"
+      address: "Address"
+      order_success: "Order_success"
+      order_some_fails: "Some product can not order"
+      order_fails: "Can not order, please check again !"

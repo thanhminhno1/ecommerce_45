@@ -4,6 +4,8 @@ class Product < ApplicationRecord
   has_many :reviews
   has_many :order_details
 
+  attr_accessor :quantity_in_cart
+
   has_attached_file :image, default_url: Settings.product.default_image,
     styles: {medium: Settings.product.size_medium,
              thumb: Settings.product.size_thumb}

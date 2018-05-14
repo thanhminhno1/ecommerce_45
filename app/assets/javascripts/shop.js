@@ -1,4 +1,6 @@
 $(document).on('turbolinks:load', function() {
+  var token = $('meta[name="csrf-token"]').attr('content');
+
   $('body').fadeIn(400);
 
   $('#myCarousel').carousel()
@@ -30,7 +32,7 @@ $(document).on('turbolinks:load', function() {
       url: self.attr('href'),
       method: 'get',
       success: function(res){
-        $('.number-item').text(res.session.length+' Item');
+        $('.number-item').text(Object.keys(res.session).length+' Item');
         if(res.product == null)
         {
           var ask = window.confirm(I18n.t("client.confirm.product_not_exits"));
@@ -50,15 +52,29 @@ $(document).on('turbolinks:load', function() {
       method: 'get',
       success: function(res){
         self.parents('tr').remove();
-        $('.number-item').text(res.session.length+' Item');
+        $('.number-item').text(Object.keys(res.session).length+' Item');
         new_total();
       }
     });
   })
 
   $('.quantity').change(function(){
+    self = $(this);
     new_row_total($(this).parents('tr'));
     new_total();
+    $.ajax({
+      url: '/update_cart',
+      method: 'put',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', token)},
+      data: {
+        id_product: self.data("product"),
+        quantity: self.val()
+      },
+      success: function(res){
+
+      }
+     });
+    $('.total').text(total);
   });
 
   function new_row_total(row) {
