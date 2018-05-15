@@ -50,4 +50,13 @@ module ApplicationHelper
   def option_for_status_order
     Order.statuses.to_a.map { |w| [w[0].humanize, w[1]] }
   end
+
+  def check_available_product_to_order
+    current_cart.each do |product|
+      if product.quantity < product.quantity_in_cart.to_i
+        redirect_to cart_path, notice: t("controller.order.not_enough_quantity")
+        return
+      end
+    end
+  end
 end

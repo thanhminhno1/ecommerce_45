@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
 
   layout "home"
 
+  before_action :ensure_login, only: %i(index create)
+  before_action :check_available_product_to_order, only: %i(index create)
+
   def index
     @order = Order.new
   end
@@ -18,6 +21,7 @@ class OrdersController < ApplicationController
       end
       details = OrderDetail.import details
       session[:cart] = {}
+      update_product_quantity @order
       redirect_after_import details
     else
       render :index, notice: t("layout.order.order_fails")
@@ -37,5 +41,17 @@ class OrdersController < ApplicationController
                        t("layout.order.order_success")
                      end
     redirect_to root_path
+  end
+
+  def ensure_login
+    return if current_user
+    flash[:danger] = t("controller.order.login_pls")
+    redirect_to root_path
+  end
+
+  def update_product_quantity order
+    order.order_details.each do |detail|
+      detail.product.decrement!(:quantity, detail.quantity) if detail.persisted?
+    end
   end
 end
