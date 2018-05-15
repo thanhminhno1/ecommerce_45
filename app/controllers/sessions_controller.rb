@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :set_product_and_ensure_cart, only: %i(add_cart remove_cart
-    update_cart)
+  before_action :set_product_and_ensure_cart, only: %i(add_cart remove_cart update_cart)
 
   def new; end
 
@@ -50,7 +49,7 @@ class SessionsController < ApplicationController
   end
 
   def redirect_user user
-    user.admin? ? redirect_to(user_path) : redirect_to(root_path)
+    user.admin? ? redirect_to(admin_orders_path) : redirect_to(root_path)
     flash[:success] = t("controller.session.login_success")
   end
 end

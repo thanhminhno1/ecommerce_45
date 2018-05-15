@@ -4,4 +4,8 @@ class OrderDetail < ApplicationRecord
 
   validates :price, presence: true
   validates :quantity, presence: true
+
+  def total
+    price * quantity
+  end
 end

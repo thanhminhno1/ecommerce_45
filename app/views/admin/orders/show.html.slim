@@ -1,0 +1,64 @@
+.panel.panel-default
+  .panel-heading
+    = t("layout.order.order_infor")
+  .panel-body
+    #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+      .row
+        table.table.no-footer.dtr-inline role="grid" style=("width: 100%;") width="100%"
+          thead
+            tr role="row"
+              th colspan="1" rowspan="1" = t("layout.order.email")
+              th colspan="1" rowspan="1" = t("layout.order.name")
+              th colspan="1" rowspan="1" = t("layout.order.address")
+              th colspan="1" rowspan="1" = t("layout.order.phone_number")
+              th colspan="1" rowspan="1" = t("layout.order.date")
+              th colspan="1" rowspan="1" = t("layout.order.status")
+              tr role="row"
+                td = @order.user.email
+                td = @order.name
+                td = @order.address
+                td = @order.phone_number
+                td = @order.created_format
+                td = t("model.order.status.#{@order.status}")
+.panel.panel-default
+  .panel-heading
+    = t("layout.order.order_details")
+  .panel-body
+    #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+      .row
+        .col-sm-12
+          table.table.table-hover.table-bordered
+            thead
+              tr
+                th = t("layout.order.product")
+                th = t("layout.order.quantity")
+                th.text-center = t("layout.order.price")
+                th.text-center = t("layout.order.total")
+            tbody
+              -@details.each do |detail|
+                tr
+                  td.col-sm-8.col-md-6
+                    .media
+                      a.thumbnail.pull-left href="#"
+                        = image_tag detail.product.image.url(:thumb), class: "media-object"
+                      .media-body
+                        h4.media-heading = detail.product.name
+                  td.col-sm-1.col-md-1 style=("text-align: center")
+                    strong = detail.quantity
+                  td.col-sm-1.col-md-1.text-center
+                    strong = detail.price
+                  td.col-sm-1.col-md-1.text-center.total_in_row
+                    strong = detail.total
+              tr
+                td colspan="2"
+                td
+                  h3 = t("layout.order.total")
+                td.text-right
+                  h3
+                    strong.total
+          .pull-right
+            - if @order.pending?
+              = link_to reject_admin_order_path(@order), class: "btn btn-danger", method: :patch
+                = t("layout.order.reject")
+              = link_to approve_admin_order_path(@order), class: "btn btn-success", method: :patch
+                = t("layout.order.approve")

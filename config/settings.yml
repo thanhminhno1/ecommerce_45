@@ -24,3 +24,6 @@ suggest:
   image_accept: ["image/jpeg", "image/gif", "image/png"]
   size_thumb: "100x100>"
   size_medium: "300x300>"
+order:
+  per_page: 10
+  format_time: "%H:%M:%S %d/%M/%Y"

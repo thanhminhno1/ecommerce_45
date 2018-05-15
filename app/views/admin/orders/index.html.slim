@@ -1,0 +1,47 @@
+.panel.panel-default
+  .panel-heading
+    = t("layout.order.header_index")
+  .panel-body
+    #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+      .row
+        .col-sm-6
+        .col-sm-6
+          #dataTables-example_filter.dataTables_filter
+            = form_for :order, method: :get do |f|
+              lanel
+                = t("layout.order.status")
+                = f.select :status, options_for_select(option_for_status_order, @params_search[:status] ),
+                    {include_blank: true}, class: "form-control", value: @params_search[:status]
+              label
+                  = f.text_field :name_or_address_or_email, value: @params_search[:name_or_address_or_email],
+                      placeholder: t("layout.order.name_address_email"), class: "form-control"
+              = f.submit t("layout.order.search") ,class: "btn btn-default"
+      .row
+        .col-sm-12
+          table.table.table-striped.table-bordered.table-hover.dataTable.no-footer.dtr-inline aria-describedby="dataTables-example_info" role="grid" style=("width: 100%;") width="100%"
+            thead
+              tr role="row"
+                th colspan="1" rowspan="1" = t("layout.order.email")
+                th colspan="1" rowspan="1" = t("layout.order.name")
+                th colspan="1" rowspan="1" = t("layout.order.address")
+                th colspan="1" rowspan="1" = t("layout.order.phone_number")
+                th colspan="1" rowspan="1" = t("layout.order.date")
+                th colspan="1" rowspan="1" = t("layout.order.status")
+                th colspan="1" rowspan="1"
+            tbody
+              - @orders.each do |order|
+                tr role="row"
+                  td = order.user.email
+                  td = order.name
+                  td = order.address
+                  td = order.phone_number
+                  td = order.created_format
+                  td = t("model.order.status.#{order.status}")
+                  td = link_to "#{t("layout.order.details")}", admin_order_path(order)
+      .row.list-group
+        .pull-right
+          = paginate @orders, theme: "twitter-bootstrap-3"
+      .row
+        .col-sm-6
+          #dataTables-example_paginate.dataTables_paginate.paging_simple_numbers
+            ul.pagination

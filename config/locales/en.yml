@@ -6,3 +6,9 @@ en:
       invalid_em_pw: "Invalid email/password"
       logout: "Success Logout"
       login_success: "Login Success"
+      not_permission: "you do not have permission to this action"
+    order:
+      approve_success: "You have successfully appreved, an email has been sent to the customer to inform them"
+      rejecte_success: "You have successfully rejected, an email has been sent to the customer to inform them"
+      not_found: "Order not found"
+

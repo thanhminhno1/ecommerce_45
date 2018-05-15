@@ -10,4 +10,13 @@ Rails.application.routes.draw do
   put "update_cart", to: "sessions#update_cart", as: :update_cart
 
   resources :orders, only: %i(index create)
+
+  namespace :admin do
+    resources :orders, only: %i(index show) do
+      member do
+        patch :approve
+        patch :reject
+      end
+    end
+  end
 end
