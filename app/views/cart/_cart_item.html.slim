@@ -8,7 +8,7 @@ tr
     br/
   td.text-center.price = product.price
   td.text-center
-      input class="quantity" type="number" value="#{product.quantity_in_cart}" style="max-width:60px" data-product="#{product.id}"
+      input.max-60.quantity_in_cart type="number" min="0" value="#{product.quantity_in_cart}" data-product="#{product.id}"
       button class="btn btn-danger cart_remove" data-href="#{remove_cart_path(product.id)}"
         span.fa.fa-trash
   td.text-center.total_in_row = product.price * product.quantity_in_cart.to_i

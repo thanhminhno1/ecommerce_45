@@ -14,3 +14,5 @@ en:
       login_pls: "Please Login!"
       not_enough_quantity: "Not enough quantity in storage"
       error_update: "Have problem when reject order"
+    product:
+      not_found: "Product not found"

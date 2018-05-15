@@ -175,3 +175,6 @@ body #wrapper{
 .notifications{
   z-index: 999;
 }
+.max-60{
+  max-width: 60px;
+}

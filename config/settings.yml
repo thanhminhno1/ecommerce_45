@@ -27,3 +27,4 @@ suggest:
 order:
   per_page: 10
   format_time: "%H:%M:%S %d/%M/%Y"
+  mail_default: "ecomerce45.framgia@gmail.com"

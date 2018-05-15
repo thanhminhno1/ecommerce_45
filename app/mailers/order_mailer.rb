@@ -1,13 +1,13 @@
 class OrderMailer < ApplicationMailer
-  default from: "ecomerce45.framgia@gmail.com"
+  default from: Settings.order.mail_default
 
   def approved_email user
     @user = user
-    mail to: @user.email, subject: "Sample Email"
+    mail to: @user.email, subject: t("mailer.order.subject_approved")
   end
 
   def rejected_email user
     @user = user
-    mail to: @user.email, subject: "Sample Email"
+    mail to: @user.email, subject: t("mailer.order.subject_rejected")
   end
 end
