@@ -1,4 +1,4 @@
-body{background:url(white_leather.png) repeat 0 0; }
+body .container-home{background:url(white_leather.png) repeat 0 0; }
 #header{padding:8px 0 8px;}
 #header a{text-decoration:none}
 #header p{padding:0; margin:0; line-height:1em; font-size:100%}
@@ -168,4 +168,10 @@ hr.soften {margin: 8px 0;background: #DDD;}
     background-color: inherit;
     border-top:0 none;
   }
+}
+body #wrapper{
+  background: #fff;
+}
+.notifications{
+  z-index: 999;
 }

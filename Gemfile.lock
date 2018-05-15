@@ -57,6 +57,9 @@ GEM
     bootstrap_notify (0.0.5)
       jquery-rails
       rails (>= 3.2.8)
+    bootstrap_sb_admin_base_v2 (0.3.6)
+      font-awesome-rails
+      jquery-rails
     builder (3.2.3)
     byebug (10.0.2)
     capybara (2.18.0)
@@ -285,6 +288,7 @@ DEPENDENCIES
   bootstrap-kaminari-views
   bootstrap-sass (~> 3.3.6)
   bootstrap_notify
+  bootstrap_sb_admin_base_v2
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)

@@ -46,4 +46,8 @@ module ApplicationHelper
     end
     @current_cart
   end
+
+  def option_for_status_order
+    Order.statuses.to_a.map { |w| [w[0].humanize, w[1]] }
+  end
 end

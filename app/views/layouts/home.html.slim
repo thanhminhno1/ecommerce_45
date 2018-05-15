@@ -5,35 +5,36 @@ head
   = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
   = javascript_include_tag "application", "data-turbolinks-track": "reload"
 body
-  .notifications.top-right
-  .navbar.navbar-fixed-top
-    .topNav
+  .container-home
+    .notifications.top-right
+    .navbar.navbar-fixed-top
+      .topNav
+        .container
+          .alignR
+            = link_to root_path, class: "active"
+              span.fa.fa-home
+              = t("layout.home.home")
+            a href="#"
+              span.fa.fa-user
+              = t("layout.home.my_account")
+            a href="register.html"
+              span.fa.fa-user-edit
+              = t("layout.home.free_register")
+            a href="contact.html"
+              span.fa.fa-envelope
+              = t("layout.home.contact_us")
+            = link_to cart_path
+              span.fa.fa-shopping-cart
+              span.number-item
+                -if current_cart
+                  | #{current_cart.count } #{t("layout.home.item")}
+    = yield
+    .copyright
       .container
-        .alignR
-          = link_to root_path, class: "active"
-            span.fa.fa-home
-            = t("layout.home.home")
-          a href="#"
-            span.fa.fa-user
-            = t("layout.home.my_account")
-          a href="register.html"
-            span.fa.fa-user-edit
-            = t("layout.home.free_register")
-          a href="contact.html"
-            span.fa.fa-envelope
-            = t("layout.home.contact_us")
-          = link_to cart_path
-            span.fa.fa-shopping-cart
-            span.number-item
-              -if current_cart
-                | #{current_cart.count } #{t("layout.home.item")}
-  = yield
-  .copyright
-    .container
-      span
-        = t("layout.home.copyright")
-  a.gotop href="#"
-    i.fa.fa-angle-double-up
+        span
+          = t("layout.home.copyright")
+    a.gotop href="#"
+      i.fa.fa-angle-double-up
 - if flash
   -flash.each do |type, message|
     javascript:
