@@ -18,8 +18,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: {case_sensitive: false},
     length: {maximum: Settings.user.email_max_length},
     format: {with: VALID_EMAIL_REGEX}
-  validates :password, presence: true,
-    length: {minimum: Settings.user.min_password}
   validates :phone_number, presence: true,
     length: {maximum: Settings.user.phone_number_max_length},
     format: {with: VALID_PHONE_NUMBER_REGEX}
