@@ -27,7 +27,7 @@ body
               span.fa.fa-shopping-cart
               span.number-item
                 -if current_cart
-                  | #{current_cart.count } #{t("layout.home.item")}
+                  | #{total_cart } #{t("layout.home.item")}
     = yield
     .copyright
       .container

@@ -1,9 +1,9 @@
 .item.col-xs-4.col-lg-4
   .thumbnail
-    a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
+    = link_to product_path(product), class: "zoomTool", title: t("layout.home.add_to_cart")
       span.fa.fa-search-plus
       = t("layout.home.quick_view")
-    a href="#"
+    = link_to product_path(product)
       = image_tag product.image.url(:medium)
     .caption.cntr
       p = product.name

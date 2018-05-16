@@ -1,0 +1,30 @@
+.container
+  = render "layouts/home_header"
+  .row
+    = render "layouts/sidebar"
+    .col-md-9
+      .well.well-small
+        .row-fluid
+          .col-md-5
+            =image_tag @product.image.url(:medium)
+          .col-md-7
+            h3 = @product.name
+            hr.soft/
+            form.form-horizontal.qtyFrm
+              .control-group
+                label.control-label.col-md-6
+                  span = @product.price
+                .controls.col-md-6
+                  input.form-control.qty-product data-product="#{@product.id}" placeholder="#{t("layout.order.quantity")}" type="number" value="1" min="0" max="#{@product.quantity}"
+              hr.softn.clr/
+              h4 #{@product.quantity} #{t("layout.product.item_in_stock")}
+              p
+                button.shopBtn#btn_add_cart title="#{t("layout.home.add_to_cart")}"
+                  span.icon-shopping-cart
+                  = t("layout.home.add_to_cart")
+        hr.softn.clr/
+        #myTabContent.tab-content.tabWrapper
+          #home.tab-pane.fade.active.in
+            h4 #{t("layout.product.product_infor")}
+            p = @product.description
+  = render "layouts/section"

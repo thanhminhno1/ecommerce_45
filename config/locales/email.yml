@@ -1,0 +1,5 @@
+en:
+  mailer:
+    order:
+      subject_approved: "Order approved"
+      subject_rejected: "Order rejected"

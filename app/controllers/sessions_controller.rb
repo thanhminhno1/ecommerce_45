@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
-  before_action :set_product_and_ensure_cart, only: %i(add_cart remove_cart update_cart)
+  include ApplicationHelper
+
+  before_action :set_product_and_ensure_cart, except: %i(create destroy)
 
   def new; end
 
@@ -10,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_user user
     else
       flash[:danger] = t("controller.session.invalid_em_pw")
-      render :new
+      redirect_to root_path
     end
   end
 
@@ -22,22 +24,31 @@ class SessionsController < ApplicationController
   end
 
   def add_cart
-    session[:cart][@product.id] = 1 if session[:cart].exclude?(@product.id)
-    render json: {product: @product.to_json, session: session[:cart]}
+    if session[:cart].key?(@product.id.to_s)
+      session[:cart][@product.id.to_s] += 1
+    else
+      session[:cart][@product.id.to_s] = 1
+    end
+    render_ajax @product
   end
 
   def remove_cart
-    if session[:cart].key?(@product.id.to_s)
-      session[:cart].delete @product.id.to_s
-    end
-    render json: {product: @product.to_json, session: session[:cart]}
+    session[:cart].delete @product.id.to_s if session[:cart].key?(@product.id.to_s)
+    render_ajax @product
   end
 
   def update_cart
-    if session[:cart].key?(@product.id.to_s)
-      session[:cart][@product.id.to_s] = params[:quantity]
-    end
-    render json: {product: @product.to_json, session: session[:cart]}
+    session[:cart][@product.id.to_s] = if session[:cart].key?(@product.id.to_s)
+                                         session[:cart][@product.id.to_s] + params[:quantity].to_i
+                                       else
+                                         params[:quantity].to_i
+                                       end
+    render_ajax @product
+  end
+
+  def update_hard_cart
+    session[:cart][@product.id.to_s] = params[:quantity].to_i if session[:cart].key?(@product.id.to_s)
+    render_ajax @product
   end
 
   private
@@ -45,11 +56,15 @@ class SessionsController < ApplicationController
   def set_product_and_ensure_cart
     @product = Product.find_by id: params[:id_product]
     session[:cart] ||= {}
-    render json: {product: nil, session: session[:cart]} unless @product
+    render json: {product: nil, total: total_cart} unless @product
   end
 
   def redirect_user user
     user.admin? ? redirect_to(admin_orders_path) : redirect_to(root_path)
     flash[:success] = t("controller.session.login_success")
+  end
+
+  def render_ajax product
+    render json: {product: product.to_json, total: total_cart}
   end
 end

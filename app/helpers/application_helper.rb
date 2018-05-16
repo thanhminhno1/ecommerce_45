@@ -40,6 +40,7 @@ module ApplicationHelper
 
   def current_cart
     return unless session[:cart]
+    session[:cart].delete_if{|key, value| value == 0}
     @current_cart ||= Product.product_in_cart(session[:cart].keys)
     @current_cart.map do |item|
       item.quantity_in_cart = session[:cart][item.id.to_s]
@@ -58,5 +59,9 @@ module ApplicationHelper
         return
       end
     end
+  end
+
+  def total_cart
+    session[:cart].values.inject(0){|sum,x| sum + x }
   end
 end
