@@ -13,19 +13,19 @@
                   = t("layout.order.name")
                   sup *
                 .col-sm-10
-                  = f.text_field :name, class: "form-control", required: "true"
+                  = f.text_field :name, class: "form-control", required: "true", value: current_user.name
               .form-group
                 label.control-label.col-sm-2
                   = t("layout.order.phone_number")
                   sup *
                 .col-sm-10
-                  = f.text_field :phone_number, class: "form-control", required: "true"
+                  = f.text_field :phone_number, class: "form-control", required: "true", value: current_user.phone_number
               .form-group
                 label.control-label.col-sm-2
                   = t("layout.order.address")
                   sup *
                 .col-sm-10
-                  = f.text_field :address, class: "form-control", required: "true"
+                  = f.text_field :address, class: "form-control", required: "true", value: current_user.address
 
               .form-group
                 = link_to root_path, class: "shopBtn btn-large"

@@ -3,3 +3,5 @@ en:
     product:
       item_in_stock: "items in stock"
       product_infor: "Product Information"
+      product_rating: "Product Rating"
+      avg_rating: "Average user rating"

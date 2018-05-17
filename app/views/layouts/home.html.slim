@@ -5,6 +5,15 @@ head
   = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
   = javascript_include_tag "application", "data-turbolinks-track": "reload"
 body
+  #fb-root
+  javascript:
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=1911353699096147&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   .container-home
     .notifications.top-right
     .navbar.navbar-fixed-top
