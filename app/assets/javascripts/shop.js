@@ -40,6 +40,11 @@ $(document).on('turbolinks:load', function() {
             window.location.href = '/';
           }
         }
+      },
+      statusCode: {
+        400: function(){
+          not_enough_notify();
+        }
       }
     });
   })
@@ -72,6 +77,11 @@ $(document).on('turbolinks:load', function() {
       },
       success: function(res){
         $('.number-item').text(res.total+' Item');
+      },
+      statusCode: {
+        400: function(){
+          not_enough_notify();
+        }
       }
      });
     $('.total').text(total);
@@ -112,8 +122,21 @@ $(document).on('turbolinks:load', function() {
         },
         success: function(res){
           $('.number-item').text(res.total+' Item');
+        },
+        statusCode: {
+          400: function(){
+            not_enough_notify();
+          }
         }
       });
     }
   });
+
+  function not_enough_notify() {
+    $('.top-right').notify({
+      message: { text: I18n.t('controller.order.not_enough_quantity') }
+    }).show();
+  }
+
+  $('.fb-comments').attr('data-href', window.location.href );
 });

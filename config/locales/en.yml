@@ -16,3 +16,4 @@ en:
       error_update: "Have problem when reject order"
     product:
       not_found: "Product not found"
+      rate_fail: "Something was wrong when rating "

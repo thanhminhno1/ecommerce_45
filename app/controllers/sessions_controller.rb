@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
   end
 
   def add_cart
+    return render_validate_fail unless validate_quantity_cart @product, 1
     if session[:cart].key?(@product.id.to_s)
       session[:cart][@product.id.to_s] += 1
     else
@@ -38,6 +39,7 @@ class SessionsController < ApplicationController
   end
 
   def update_cart
+    return render_validate_fail unless validate_quantity_cart @product, params[:quantity].to_i
     session[:cart][@product.id.to_s] = if session[:cart].key?(@product.id.to_s)
                                          session[:cart][@product.id.to_s] + params[:quantity].to_i
                                        else
@@ -47,11 +49,24 @@ class SessionsController < ApplicationController
   end
 
   def update_hard_cart
+    return render_validate_fail unless validate_quantity_cart @product, params[:quantity].to_i, true
     session[:cart][@product.id.to_s] = params[:quantity].to_i if session[:cart].key?(@product.id.to_s)
     render_ajax @product
   end
 
   private
+
+  def validate_quantity_cart product, quantity, update_hard = false
+    if update_hard || !session[:cart].key?(@product.id.to_s)
+      result = product.quantity >= quantity
+    else
+      result = product.quantity >= (quantity + session[:cart][@product.id.to_s])
+    end
+  end
+
+  def render_validate_fail
+    return render json: {}, status: 400
+  end
 
   def set_product_and_ensure_cart
     @product = Product.find_by id: params[:id_product]

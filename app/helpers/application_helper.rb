@@ -64,4 +64,8 @@ module ApplicationHelper
   def total_cart
     session[:cart].values.inject(0){|sum,x| sum + x }
   end
+
+  def check_rated product
+    current_user.reviews.find_by product_id: product
+  end
 end
