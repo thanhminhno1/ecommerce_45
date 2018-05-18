@@ -65,7 +65,7 @@ class SessionsController < ApplicationController
   end
 
   def render_validate_fail
-    return render json: {}, status: 400
+    render json: {}, status: 400
   end
 
   def set_product_and_ensure_cart
