@@ -68,4 +68,30 @@ module ApplicationHelper
   def check_rated product
     current_user.reviews.find_by product_id: product
   end
+
+  def add_recently_product product
+    history = current_user.history
+    if history
+      array = history.products[1..-2].split(", ").map(&:to_i)
+      array.delete product.id
+      array.delete_at(0) if array.length == 5
+      array << product.id
+      return false unless history.update products: array.to_s
+    else
+      array = []
+      array << product.id
+      history = History.new user_id: current_user.id, products: array.to_s
+    end
+    history.save ? true : false
+  end
+
+  def recently_product
+    return [] unless current_user.history
+    array = current_user.history.products[1..-2].split(", ").map(&:to_i)
+    begin
+      return Product.find array.reverse
+    rescue
+      return []
+    end
+  end
 end

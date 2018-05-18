@@ -5,35 +5,16 @@
         =draw_sidebar(category)
   br
   ul.nav.nav-list.promowrapper
-    li
-      .thumbnail
-        a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
-          span.fa.fa-search-plus
-          = t("layout.home.quick_view")
-        = image_tag "bootstrap-ecommerce-templates"
-        .caption
-          h4
-            a.btn.btn-lg.btn-default href="#"  = t("layout.home.view")
-            span.pull-right $22.00
-    li style="border:0"   
-    li
-      .thumbnail
-        a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
-          span.fa.fa-search-plus
-          = t("layout.home.quick_view")
-        = image_tag "shopping-cart-template"
-        .caption
-          h4
-            a.btn.btn-lg.btn-default href="#"  = t("layout.home.view")
-            span.pull-right $22.00
-    li style="border:0"   
-    li
-      .thumbnail
-        a.zoomTool href="#" title=("#{t("layout.home.add_to_cart")}")
-          span.fa.fa-search-plus
-          = t("layout.home.quick_view")
-        = image_tag "bootstrap-template"
-        .caption
-          h4
-            a.btn.btn-lg.btn-default href="#"  = t("layout.home.view")
-            span.pull-right $22.00
+    -if recently_product
+      -recently_product.each do |product|
+        li
+          .thumbnail
+            = link_to product_path(product), class: "zoomTool", title: t("layout.home.add_to_cart")
+              span.fa.fa-search-plus
+              = t("layout.home.quick_view")
+            = image_tag product.image.url(:medium)
+            .caption
+              h4
+                = product.name
+                span.pull-right = product.price
+        li style="border:0"   

@@ -17,3 +17,4 @@ en:
     product:
       not_found: "Product not found"
       rate_fail: "Something was wrong when rating "
+      recently_fail: "Add recently fail"
