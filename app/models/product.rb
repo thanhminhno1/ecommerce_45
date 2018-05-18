@@ -19,4 +19,6 @@ class Product < ApplicationRecord
 
   scope :ordered_by_name, ->{order name: :asc}
   scope :product_in_cart, ->(cart){where id: cart}
+  scope :by_name, ->(query){where("name LIKE ?", "%#{query}%")}
+  scope :list_product, ->(query){where id: query}
 end

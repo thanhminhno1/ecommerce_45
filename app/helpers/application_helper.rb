@@ -9,27 +9,6 @@ module ApplicationHelper
     end
   end
 
-  def draw_sidebar category
-    content_tag :li, class: "collapsed active" do
-      concat draw_sub category
-      category.children.each do |child|
-        concat content_tag(:ul, draw_sidebar(child), id: "cat#{category.id}",
-          class: "sub-menu nav nav-list collapse")
-      end
-    end
-  end
-
-  def draw_sub category
-    content_tag(:a, class: "accordion-heading",
-      "data-target": "#cat#{category.id}", "data-toggle": "collapse") do
-      if category.children.any?
-        concat content_tag(:span, nil,
-          class: "pull-right fa fa-angle-down fa-lg")
-      end
-      concat category.name
-    end
-  end
-
   def list_category
     @categories = Category.list_parents.ordered_by_name
   end
@@ -62,7 +41,7 @@ module ApplicationHelper
   end
 
   def total_cart
-    session[:cart].values.inject(0){|sum,x| sum + x }
+    session[:cart].values.reduce(:+)
   end
 
   def check_rated product
@@ -86,7 +65,7 @@ module ApplicationHelper
   end
 
   def recently_product
-    return [] unless current_user.history
+    return [] unless current_user && current_user.history
     array = current_user.history.products[1..-2].split(", ").map(&:to_i)
     begin
       return Product.find array.reverse

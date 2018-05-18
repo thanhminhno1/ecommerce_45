@@ -191,3 +191,11 @@ body #wrapper{
 #rating{
   margin-top: 20px;
 }
+
+.drop-down{
+  position: absolute !important;
+  top: 0px;
+  right: 0px;
+  width: 20%;
+  height: 100%;
+}

@@ -19,21 +19,9 @@
           span.icon-bar
           span.icon-bar
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
-        ul.nav.navbar-nav
-          li.active
-            a href="#"
-          li.dropdown
-            a.dropdown-toggle data-toggle="dropdown" href="#"
-              span.caret
-            ul.dropdown-menu role="menu"
-              li
-                a href="#"
-              li.divider
-              li
-                a href="#"
-        form.navbar-form.navbar-left role="search"
+        = form_for :product, url: products_path, html: {class: "navbar-form navbar-left", method: :get} do |f|
           .input-group
-            input.form-control name="q" placeholder="#{t("layout.home.search")}" type="text" /
+            =f.text_field :name, class: "form-control", placeholder: t("layout.home.search")
             .input-group-btn
               button.btn.btn-default.btn-search type="submit"
                 i.fa.fa-search-plus.fa-lg

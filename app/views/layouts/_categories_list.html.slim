@@ -1,0 +1,8 @@
+li.collapsed.active
+  a.category-link href="#{category_path(category)}"
+    = category.name
+  a.pull-right.drop-down data-toggle="collapse" data-target="#cat#{category.id}"
+    - if category.children.any?
+      span.pull-right.fa.fa-angle-down.fa-lg
+      ul.nav.nav-list.nav-category.collapse.sub-menu id="cat#{category.id}"
+        = render partial: "layouts/categories_list", collection: category.children, as: :category
