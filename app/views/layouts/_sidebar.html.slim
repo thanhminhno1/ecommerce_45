@@ -1,8 +1,7 @@
 #sidebar.col-md-3
   .well.well-small
     ul.nav.nav-list.nav-category
-      -list_category.each do |category|
-        =draw_sidebar(category)
+      = render partial: "layouts/categories_list", collection: list_category, as: :category
   br
   ul.nav.nav-list.promowrapper
     -if recently_product

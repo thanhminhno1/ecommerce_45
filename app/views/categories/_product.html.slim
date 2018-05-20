@@ -1,0 +1,18 @@
+.item.col-xs-4.col-lg-4
+  .thumbnail
+    = link_to product_path(product), class: "zoomTool", title: t("layout.home.add_to_cart")
+      span.fa.fa-search-plus
+      = t("layout.home.quick_view")
+    = link_to product_path(product)
+      = image_tag product.image.url(:medium)
+    .caption.cntr
+      p = product.name
+      p
+        strong
+          |$ #{product.price}
+      h4
+        -if product.quantity > 0
+          =link_to "#{t("layout.home.add_to_cart")}", add_cart_path(product), class: "btn btn-danger btn-lg add_to_cart", title: "#{t("layout.home.add_to_cart")}"
+        -else
+          button.btn.btn-default.btn-lg = t("layout.home.out_of_stock")
+      br.clr/
