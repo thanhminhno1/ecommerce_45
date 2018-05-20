@@ -58,9 +58,9 @@ class SessionsController < ApplicationController
 
   def validate_quantity_cart product, quantity, update_hard = false
     if update_hard || !session[:cart].key?(@product.id.to_s)
-      result = product.quantity >= quantity
+      product.quantity >= quantity
     else
-      result = product.quantity >= (quantity + session[:cart][@product.id.to_s])
+      product.quantity >= (quantity + session[:cart][@product.id.to_s])
     end
   end
 

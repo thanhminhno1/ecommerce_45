@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function() {
       url: self.attr('href'),
       method: 'get',
       success: function(res){
-        $('.number-item').text(res.total+' Item');
+        update_number_cart(res.total);
         if(res.product == null)
         {
           var ask = window.confirm(I18n.t("client.confirm.product_not_exits"));
@@ -57,7 +57,7 @@ $(document).on('turbolinks:load', function() {
       method: 'get',
       success: function(res){
         self.parents('tr').remove();
-        $('.number-item').text(res.total+' Item');
+        update_number_cart(res.total);
         new_total();
       }
     });
@@ -76,7 +76,7 @@ $(document).on('turbolinks:load', function() {
         quantity: self.val()
       },
       success: function(res){
-        $('.number-item').text(res.total+' Item');
+        update_number_cart(res.total);
       },
       statusCode: {
         400: function(){
@@ -100,6 +100,15 @@ $(document).on('turbolinks:load', function() {
     $('.total').text(total);
   }
 
+  function update_number_cart(total) {
+    if(total == null){
+      $('.number-item').text(I18n.t('layout.home.item'));
+    }else{
+      $('.number-item').text(total + I18n.t('layout.home.item'));
+    }
+  }
+
+
   new_total();
 
   $('.gotop').click(function() {
@@ -121,7 +130,7 @@ $(document).on('turbolinks:load', function() {
           quantity: self.val()
         },
         success: function(res){
-          $('.number-item').text(res.total+' Item');
+          update_number_cart(res.total);
         },
         statusCode: {
           400: function(){
@@ -139,4 +148,6 @@ $(document).on('turbolinks:load', function() {
   }
 
   $('.fb-comments').attr('data-href', window.location.href );
+
+  $('.fb-share-button').attr('data-href', window.location.href );
 });

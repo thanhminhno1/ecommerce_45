@@ -1,0 +1,35 @@
+.panel.panel-default
+  .panel-heading
+    = t("layout.category.header_index")
+  .panel-body
+    #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+      .row
+        .col-sm-6
+        .col-sm-6
+          #dataTables-example_filter.dataTables_filter
+      .row
+        .col-sm-12
+          = link_to new_admin_category_path(0), class: "btn btn-success"
+            | New
+          table.table.table-striped.table-bordered.table-hover.dataTable.no-footer.dtr-inline aria-describedby="dataTables-example_info" role="grid" style=("width: 100%;") width="100%"
+            thead
+              tr role="row"
+                th colspan="1" rowspan="1" Name
+                th colspan="1" rowspan="1" Description
+                th colspan="1" rowspan="1" Details
+                th colspan="1" rowspan="1" Action
+            tbody
+              - list_category.each do |category|
+                tr role="row"
+                  td = category.name
+                  td = category.description
+                  td
+                    = link_to admin_category_path(category)
+                      | #{t("layout.category.details")} (#{category.children.length})
+                  td
+                    = link_to edit_admin_category_path(category)
+                      span.btn.btn-info
+                        i.fa.fa-edit
+                    = link_to admin_category_path(category), method: :delete
+                      span.btn.btn-danger
+                        i.fa.fa-trash

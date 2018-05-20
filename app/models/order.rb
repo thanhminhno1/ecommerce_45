@@ -20,6 +20,7 @@ class Order < ApplicationRecord
     joins(:user).where("users.email LIKE ? OR orders.address LIKE ?
     OR orders.name LIKE ?", "%#{query}%", "%#{query}", "%#{query}%")
   }
+  scope :have_products, ->(products){joins(:order_details).where("order_details.product_id": products)}
 
   def created_format
     created_at.strftime(Settings.order.format_time)

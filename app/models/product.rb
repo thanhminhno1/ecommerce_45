@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :category
   has_many :comments
   has_many :reviews
@@ -19,4 +21,6 @@ class Product < ApplicationRecord
 
   scope :ordered_by_name, ->{order name: :asc}
   scope :product_in_cart, ->(cart){where id: cart}
+  scope :by_name, ->(query){where("name LIKE ?", "%#{query}%")}
+  scope :list_product, ->(query){where id: query}
 end

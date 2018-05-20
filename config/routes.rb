@@ -12,13 +12,19 @@ Rails.application.routes.draw do
   put "update_hard_cart", to: "sessions#update_hard_cart", as: :update_hard_cart
 
   resources :orders, only: %i(index create)
-  resources :products, only: :show
-
+  resources :products, only: %i(index show)
+  resources :categories, only: :show
   namespace :admin do
     resources :orders, only: %i(index show) do
       member do
         patch :approve
         patch :reject
+      end
+    end
+    resources :categories, except: %i(new create) do
+      member do
+        get "new", to: "categories#new", as: :new
+        post "new", to: "categories#create", as: :create
       end
     end
   end
