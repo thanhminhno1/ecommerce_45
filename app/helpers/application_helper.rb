@@ -19,7 +19,7 @@ module ApplicationHelper
 
   def current_cart
     return unless session[:cart]
-    session[:cart].delete_if{|key, value| value == 0}
+    session[:cart].delete_if{|key, value| value.zero?}
     @current_cart ||= Product.product_in_cart(session[:cart].keys)
     @current_cart.map do |item|
       item.quantity_in_cart = session[:cart][item.id.to_s]
@@ -35,7 +35,6 @@ module ApplicationHelper
     current_cart.each do |product|
       if product.quantity < product.quantity_in_cart.to_i
         redirect_to cart_path, notice: t("controller.order.not_enough_quantity")
-        return
       end
     end
   end
@@ -45,10 +44,12 @@ module ApplicationHelper
   end
 
   def check_rated product
+    return unless current_user
     current_user.reviews.find_by product_id: product
   end
 
   def add_recently_product product
+    return true unless current_user
     history = current_user.history
     if history
       array = history.products[1..-2].split(", ").map(&:to_i)
@@ -72,5 +73,23 @@ module ApplicationHelper
     rescue
       return []
     end
+  end
+
+  def category_has_no_product_are_being_ordered category
+    return true unless category
+    products = get_all_product_by_category category, []
+    count = Order.pending.have_products(products).count
+    count.zero?
+  end
+
+  def get_all_product_by_category category, products
+    @products = products
+    @products += category.products.pluck(:id)
+    if category.children.any?
+      category.children.each do |cat|
+        get_all_product_by_category cat, @products
+      end
+    end
+    @products
   end
 end

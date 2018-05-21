@@ -1,0 +1,12 @@
+en:
+  layout:
+    category:
+      new_category: "New Category"
+      edit_category: "Edit Category"
+      save: "Save"
+      details: "Details"
+      name: "Name"
+      description: "Description"
+      new: "New"
+      actions: "Actions"
+      header_index: "Categories Table"

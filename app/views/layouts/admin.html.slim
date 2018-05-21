@@ -15,7 +15,7 @@ body
           span.icon-bar
           span.icon-bar
 
-        a.navbar-brand href="index.html" ECOMMERCE 45
+        a.navbar-brand href="index.html" = t("layout.admin.title")
       /! /.navbar-header
       ul.nav.navbar-top-links.navbar-right
         li.dropdown
@@ -36,7 +36,10 @@ body
         ul.nav.nav-list.nav-category
           li.collapsed.active
             = link_to admin_orders_path
-              | Orders
+               = t("layout.admin.orders")
+          li.collapsed.active
+            = link_to admin_categories_path
+               = t("layout.admin.categories")
     #page-wrapper style=("min-height: 700px;")
       .container-fluid
         .row

@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :category
   has_many :comments
   has_many :reviews

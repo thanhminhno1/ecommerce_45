@@ -1,0 +1,13 @@
+.panel.panel-default
+  .panel-heading = t("layout.category.new_category")
+  .panel-body
+    .row
+      .col-lg-12
+        = form_for @category_new, url: create_admin_category_path(@category), method: :post do |f|
+          .form-group
+            label = t("layout.category.name")
+            = f.text_field :name, class: "form-control"
+          .form-group
+            label = t("layout.category.description")
+            = f.text_area :description, class: "form-control"
+          button.btn.btn-default type="submit" = t("layout.category.save")

@@ -21,5 +21,11 @@ Rails.application.routes.draw do
         patch :reject
       end
     end
+    resources :categories, except: %i(new create) do
+      member do
+        get "new", to: "categories#new", as: :new
+        post "new", to: "categories#create", as: :create
+      end
+    end
   end
 end
