@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         get "new", to: "categories#new", as: :new
         post "new", to: "categories#create", as: :create
       end
+      resources :products
     end
   end
 end

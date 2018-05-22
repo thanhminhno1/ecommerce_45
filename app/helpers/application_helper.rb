@@ -92,4 +92,9 @@ module ApplicationHelper
     end
     @products
   end
+
+  def product_are_not_being_ordered product
+    return true unless product
+    Order.pending.have_products(product.id).count.zero?
+  end
 end

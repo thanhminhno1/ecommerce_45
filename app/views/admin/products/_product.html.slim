@@ -1,0 +1,13 @@
+tr role="row"
+  td = product.name
+  td = image_tag product.image.url(:medium)
+  td = product.description
+  td = product.price
+  td = product.quantity
+  td
+    = link_to edit_admin_category_product_path(@category, product)
+      span.btn.btn-info
+        i.fa.fa-edit
+    = link_to admin_category_product_path(@category, product), method: :delete
+      span.btn.btn-danger
+        i.fa.fa-trash

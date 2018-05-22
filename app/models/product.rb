@@ -18,9 +18,12 @@ class Product < ApplicationRecord
     length: {maximum: Settings.product.name_max_length}
   validates :description, presence: true,
     length: {maximum: Settings.product.description_max_length}
+  validates :price, presence: true
+  validates :quantity, presence: true
 
   scope :ordered_by_name, ->{order name: :asc}
   scope :product_in_cart, ->(cart){where id: cart}
   scope :by_name, ->(query){where("name LIKE ?", "%#{query}%")}
+  scope :by_name_or_desc, ->(query){where("name LIKE ? OR description LIKE ?", "%#{query}%", "%#{query}%")}
   scope :list_product, ->(query){where id: query}
 end
