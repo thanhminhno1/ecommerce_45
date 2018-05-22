@@ -1,0 +1,19 @@
+= form_for [:admin, @category, @product] do |f|
+  .form-group
+    label = t("layout.product.name")
+    = f.text_field :name, class: "form-control"
+  .form-group
+    label = t("layout.product.description")
+    = f.text_area :description, class: "form-control"
+  .form-group
+    label = t("layout.product.quantity")
+    = f.number_field :quantity, class: "form-control"
+  .form-group
+    label = t("layout.product.price")
+    = f.number_field :price, class: "form-control"
+  .form-group
+    label = t("layout.product.image")
+    .row.current_image
+      = image_tag @product.image.url(:medium)
+    = f.file_field :image
+  button.btn.btn-default type="submit" = t("layout.product.save")

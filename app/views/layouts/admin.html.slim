@@ -14,9 +14,8 @@ body
           span.icon-bar
           span.icon-bar
           span.icon-bar
-
-        a.navbar-brand href="index.html" = t("layout.admin.title")
-      /! /.navbar-header
+        = link_to admin_orders_path, class: "navbar-brand"
+          = t("layout.admin.title")
       ul.nav.navbar-top-links.navbar-right
         li.dropdown
           a.dropdown-toggle data-toggle="dropdown" href="#"

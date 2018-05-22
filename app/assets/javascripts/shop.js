@@ -150,4 +150,8 @@ $(document).on('turbolinks:load', function() {
   $('.fb-comments').attr('data-href', window.location.href );
 
   $('.fb-share-button').attr('data-href', window.location.href );
+
+  $('#order_status').change(function(){
+    $(this).parents('form').submit();
+  });
 });

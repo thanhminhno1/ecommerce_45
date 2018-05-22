@@ -199,3 +199,6 @@ body #wrapper{
   width: 20%;
   height: 100%;
 }
+.current_form{
+  margin: 5px;
+}

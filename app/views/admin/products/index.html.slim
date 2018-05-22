@@ -1,0 +1,35 @@
+.panel.panel-default
+  .panel-heading
+    | #{t("layout.product.product_of")} #{@category.name}
+  .panel-body
+    #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+      .row
+        .col-sm-6
+        .col-sm-6
+          #dataTables-example_filter.dataTables_filter
+      .row
+        .col-sm-6
+          = link_to new_admin_category_product_path(@category), class: "btn btn-success"
+            | New
+        .col-sm-6
+          #dataTables-example_filter.dataTables_filter
+            = form_for :product, method: :get do |f|
+              = f.text_field :name_or_desc, value: @params_search[:name_or_address_or_email],
+                placeholder: t("layout.product.name_or_desc"), class: "form-control"
+              = f.submit t("layout.product.search") ,class: "btn btn-default"
+        table.table.table-striped.table-bordered.table-hover.dataTable.no-footer.dtr-inline aria-describedby="dataTables-example_info" role="grid" style=("width: 100%;") width="100%"
+          thead
+            tr role="row"
+              th colspan="1" rowspan="1" = t("layout.product.name")
+              th colspan="1" rowspan="1" = t("layout.product.image")
+              th colspan="1" rowspan="1" = t("layout.product.description")
+              th colspan="1" rowspan="1" = t("layout.product.price")
+              th colspan="1" rowspan="1" = t("layout.product.quantity")
+              th colspan="1" rowspan="1" = t("layout.product.action")
+          tbody
+            = render partial: "product", collection: @products, as: :product
+        .row
+          .col-md-12
+            .pull-right
+              = paginate @products, theme: "twitter-bootstrap-3"
+
