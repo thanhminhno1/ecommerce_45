@@ -154,4 +154,20 @@ $(document).on('turbolinks:load', function() {
   $('#order_status').change(function(){
     $(this).parents('form').submit();
   });
+
+  function checkfile(sender) {
+    var validExts = new Array('.xlsx', '.xls');
+    var fileExt = sender.val();
+    fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+    if (validExts.indexOf(fileExt) < 0) {
+      alert(I18n.t('client.confirm.invalid_file_excel') + validExts.toString());
+      sender.val('');
+      return false;
+    }
+    else return true;
+  }
+
+  $('#file').change(function(){
+    checkfile($(this));
+  })
 });

@@ -25,6 +25,10 @@ en:
       delete_success: "Delete success"
       delete_fail: "Can not delete, product are being ordered"
       delete_error: "Can not delete"
+      file_not: "Please upload file"
+      import_success: "Import Success"
+      import_success_but: "Import success but some row can not import"
+      unknown_file_type: "Unknown file type: "
     category:
       not_found: "Category not found"
       delete_success: "Delete success"

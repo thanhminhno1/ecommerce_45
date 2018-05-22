@@ -17,3 +17,5 @@ en:
       quantity: "Quantity"
       price: "Price"
       action: "Action"
+      import: "Import"
+      import_header: "Import from Excel file"

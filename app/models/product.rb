@@ -26,4 +26,23 @@ class Product < ApplicationRecord
   scope :by_name, ->(query){where("name LIKE ?", "%#{query}%")}
   scope :by_name_or_desc, ->(query){where("name LIKE ? OR description LIKE ?", "%#{query}%", "%#{query}%")}
   scope :list_product, ->(query){where id: query}
+
+  def self.import(file)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(Settings.product.number_header)
+    (Settings.product.start_column..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      product = new
+      product.attributes = row.to_hash.slice(*row.to_hash.keys)
+      product.save
+    end
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+      when ".xls" then Roo::Excel.new(file.path)
+      when ".xlsx" then Roo::Excelx.new(file.path)
+      else raise I18n.t("controller.product.unknown_file_type") + file.original_filename
+    end
+  end
 end

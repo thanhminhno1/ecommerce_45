@@ -1,0 +1,10 @@
+.panel.panel-default
+  .panel-body
+    .row
+      .col-lg-12
+        h4 = t("layout.product.import_header")
+        = form_tag admin_product_import_process_path, multipart: true, id: "form_import" do
+          .form-group
+            = file_field_tag :file
+          .form-group
+            = submit_tag t("layout.product.import"), class: "btn btn-success"
