@@ -28,5 +28,8 @@ Rails.application.routes.draw do
       end
       resources :products
     end
+
+    get :import_product, to: "products#import", as: :product_import
+    post :import_product, to: "products#import_process", as: :product_import_process
   end
 end

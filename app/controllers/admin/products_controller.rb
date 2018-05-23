@@ -1,8 +1,8 @@
 class Admin::ProductsController < Admin::BaseController
   include ApplicationHelper
 
-  before_action :find_category
-  before_action :find_product, except: %i(index new create)
+  before_action :find_category, except: %i(import_process import)
+  before_action :find_product, only: %i(edit update show destroy)
 
   def index
     @params_search = params[:product] || {name_or_desc: ""}
@@ -50,6 +50,17 @@ class Admin::ProductsController < Admin::BaseController
       flash[:notice] = t("controller.product.delete_fail")
     end
     redirect_to admin_category_products_path @category
+  end
+
+  def import_process
+    unless params[:file]
+      flash[:notice] = t("controller.product.file_not")
+      redirect_to admin_product_import_path
+      return
+    end
+    Product.import params[:file]
+    flash[:success] = t("controller.product.import_success")
+    redirect_to admin_categories_path
   end
 
   private

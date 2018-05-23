@@ -17,6 +17,8 @@ product:
   size_thumb: "100x100>"
   size_medium: "300x300>"
   default_image: "image_:style"
+  number_header: 1
+  start_column: 2
 suggest:
   per_page: 10
   area_rows: 3
