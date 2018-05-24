@@ -1,0 +1,20 @@
+en:
+  layout:
+    devise:
+      change_pass: "Change Your Password"
+      forgot_pass: "Forgot your password?"
+      update_profile: "Update Profile"
+      sign_up: "Sign Up"
+      new_pass: "New password"
+      confirm_pass: "Confirm new password"
+      change_my_pass: "Change my password"
+  email:
+    devise:
+      hello: "Hello"
+      some_one_request: "Someone has requested a link to change your password. You can do this through the link below."
+      ignore_email: "If you didn't request this, please ignore this email."
+      explain: "Your password won't change until you access the link above and create a new one."
+      password_changed: "We're contacting you to notify you that your password has been changed."
+      notify_changed: "We're contacting you to notify you that your email has been changed to"
+      confirm: "You can confirm your account email through the link below:"
+      confirm_my_account: "Confirm my account"

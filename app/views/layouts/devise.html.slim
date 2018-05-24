@@ -1,0 +1,24 @@
+head
+  title = t("layout.home.title")
+  = csrf_meta_tags
+
+  = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+  = javascript_include_tag "application", "data-turbolinks-track": "reload"
+body
+  .container-home
+    .notifications.top-right
+    .main
+      .col-md-offset-3.col-md-6
+        = yield
+    .copyright
+      .container
+        span
+          = t("layout.home.copyright")
+    a.gotop href="#"
+      i.fa.fa-angle-double-up
+- if flash
+  -flash.each do |type, message|
+    javascript:
+      $('.top-right').notify({
+        message: { text: "#{message}" }
+      }).show();

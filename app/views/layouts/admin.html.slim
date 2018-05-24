@@ -28,7 +28,7 @@ body
                 i.fa.fa-user.fa-fw
                 | User Profile
             li
-              =link_to logout_path, method: :delete
+              =link_to destroy_user_session_path, method: :delete
                 i.fa.fa-sign-out.fa-fw
                 = t('layout.session.logout')
       .sidebar

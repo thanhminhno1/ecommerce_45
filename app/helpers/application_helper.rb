@@ -13,10 +13,6 @@ module ApplicationHelper
     @categories = Category.list_parents.ordered_by_name
   end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
-
   def current_cart
     return unless session[:cart]
     session[:cart].delete_if{|key, value| value.zero?}
