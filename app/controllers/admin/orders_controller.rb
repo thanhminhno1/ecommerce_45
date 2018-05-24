@@ -1,7 +1,7 @@
 class Admin::OrdersController < Admin::BaseController
   include ApplicationHelper
 
-  before_action :set_order, only: %i(approve reject show)
+  load_and_authorize_resource
 
   def index
     @params_search = params[:order] || {status: "", name_or_address_or_email: ""}
@@ -45,12 +45,5 @@ class Admin::OrdersController < Admin::BaseController
         return false
       end
     end
-  end
-
-  def set_order
-    @order = Order.find_by id: params[:id]
-    return if @order
-    flash[:notice] = t("controller.order.not_found")
-    redirect_to admin_orders_path
   end
 end
