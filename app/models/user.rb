@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_secure_password
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   before_save :downcase_email
 
   has_many :comments, dependent: :destroy

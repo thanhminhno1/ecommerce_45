@@ -37,7 +37,7 @@
                 li
                   .row
                     .pull-right
-                      =link_to "#{t('layout.session.logout')}", logout_path, method: :delete, class: "btn btn-default"
+                      =link_to "#{t('layout.session.logout')}", destroy_user_session_path, method: :delete, class: "btn btn-default"
           -else
             li.dropdown
               a.dropdown-toggle data-toggle="dropdown" href="#"
@@ -47,7 +47,7 @@
                 li
                   .row
                     .col-md-12
-                      = form_for :session, url: login_path, method: :post, html: {id: "login", class: "form"} do |f|
+                      = form_for :user, url: session_path(:user), method: :post, html: {id: "login", class: "form"} do |f|
                         .form-group
                           label.sr-only = t("layout.session.email")
                           = f.email_field :email, class: "form-control", place_holder: t("layout.session.email")
@@ -55,10 +55,10 @@
                           label.sr-only = t("layout.session.password")
                           = f.password_field :password, class: "form-control", place_holder: t("layout.session.password")
                           .help-block.text-right
-                            a href="" = t("layout.session.forget_password")
+                            = link_to t("layout.session.forget_password"), new_user_password_path
                         .form-group
                           = f.submit "#{t('layout.session.sign_in')}", class: "btn btn-primary btn-block"
                         .checkbox
                           label
-                            input type="checkbox"
+                            = f.check_box :remember_me
                             = t("layout.session.keep_login")

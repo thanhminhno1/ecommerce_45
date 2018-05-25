@@ -202,3 +202,8 @@ body #wrapper{
 .current_form{
   margin: 5px;
 }
+.container-home .main{
+  padding-top: 100px;
+  min-height: 100%;
+}
+

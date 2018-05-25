@@ -23,10 +23,10 @@ body
             = link_to root_path, class: "active"
               span.fa.fa-home
               = t("layout.home.home")
-            a href="#"
+            = link_to edit_user_registration_path
               span.fa.fa-user
               = t("layout.home.my_account")
-            a href="register.html"
+            = link_to new_user_registration_path
               span.fa.fa-user-edit
               = t("layout.home.free_register")
             a href="contact.html"

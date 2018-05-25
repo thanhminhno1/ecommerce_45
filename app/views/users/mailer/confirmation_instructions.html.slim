@@ -1,0 +1,4 @@
+p
+  | t("email.devise.hello") #{@email}!
+p = t("email.devise.confirm")
+p = link_to t("email.devise.confirm_my_account"), confirmation_url(@resource, confirmation_token: @token)

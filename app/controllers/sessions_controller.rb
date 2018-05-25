@@ -3,26 +3,6 @@ class SessionsController < ApplicationController
 
   before_action :set_product_and_ensure_cart, except: %i(create destroy)
 
-  def new; end
-
-  def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      session[:user_id] = user.id
-      redirect_user user
-    else
-      flash[:danger] = t("controller.session.invalid_em_pw")
-      redirect_to root_path
-    end
-  end
-
-  def destroy
-    session.delete :user_id
-    @current_user = nil
-    flash[:success] = t("controller.session.logout")
-    redirect_to root_path
-  end
-
   def add_cart
     return render_validate_fail unless validate_quantity_cart @product, 1
     if session[:cart].key?(@product.id.to_s)
