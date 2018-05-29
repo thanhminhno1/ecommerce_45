@@ -1,0 +1,31 @@
+=form_tag admin_charts_path, method: :get, class: "form-horizontal" do
+  .form-group
+    .checkbox.col-md-3
+      label
+        = radio_button_tag "type", "year", (@params_search[:type] == "year")
+        = t("layout.admin.year")
+    .col-md-3
+      = text_field_tag "year", @params_search[:year], class: "form-control yearpicker", autocomplete: "off", disabled: (@params_search[:type] != "year"), required: true
+  .form-group
+    .checkbox.col-md-3
+      label
+        = radio_button_tag "type", "month", (@params_search[:type] == "month")
+        = t("layout.admin.month")
+    .col-md-3
+        = text_field_tag "month", @params_search[:month], class: "form-control monthpicker", autocomplete: "off", disabled: (@params_search[:type] != "month"), required: true
+  .form-group
+    .checkbox.col-md-3
+      label
+        = radio_button_tag "type", "range", (@params_search[:type] == "range")
+        = t("layout.admin.range")
+    .col-md-3
+      = text_field_tag "from_date", @params_search[:from_date], class: "form-control datepicker", autocomplete: "off", disabled: (@params_search[:type] != "range"), required: true
+    .col-md-3
+      = text_field_tag "to_date", @params_search[:to_date], class: "form-control datepicker", autocomplete: "off", disabled: (@params_search[:type] != "range"), required: true
+    .col-md-3
+      label.col-md-3 for="pwd" = t("layout.admin.unit")
+      .col-md-9
+        = select_tag 'unit', options_for_select(Order::CHART_TYPE, @params_search[:unit]) ,class: "form-control", disabled: (@params_search[:type] != "range")
+  .form-group.col-md-12
+    button.btn.btn-default type="submit" = t("layout.admin.submit")
+= line_chart @orders

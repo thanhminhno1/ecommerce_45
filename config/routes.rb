@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :users
   devise_for :users, controllers: {
     sessions: "users/sessions",
     passwords: "users/passwords",
@@ -38,5 +37,7 @@ Rails.application.routes.draw do
 
     get :import_product, to: "products#import", as: :product_import
     post :import_product, to: "products#import_process", as: :product_import_process
+
+    resources :charts, only: :index
   end
 end

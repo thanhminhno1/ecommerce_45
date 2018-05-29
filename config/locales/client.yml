@@ -3,3 +3,4 @@ en:
     confirm:
       product_not_exits: "Product does not exist, redirect to Home page ?"
       invalid_file_excel: "Invalid file selected, valid files are of "
+      invalid_date_range: "Invalid date range"
