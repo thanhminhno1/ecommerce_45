@@ -1,0 +1,12 @@
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    p
+      | #{t("mailer.admin.title")}
+    -@orders.each do |key, value|
+      - if value > 0
+        p
+          | #{key.strftime("%d/%m/%Y")}:
+          strong = value
+

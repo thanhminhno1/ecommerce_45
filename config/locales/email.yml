@@ -3,3 +3,7 @@ en:
     order:
       subject_approved: "Order approved"
       subject_rejected: "Order rejected"
+    admin:
+      monthly_revenue_subject: "Monthly revenue report"
+      hi: "Hi Admin :"
+      title: "Turnover each day of the month"
