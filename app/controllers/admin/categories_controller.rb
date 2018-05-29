@@ -1,7 +1,7 @@
 class Admin::CategoriesController < Admin::BaseController
   include ApplicationHelper
 
-  before_action :find_category, except: %i(index new create)
+  load_and_authorize_resource
 
   def index; end
 
@@ -70,14 +70,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  def find_category
-    @category = Category.find_by id: params[:id]
-    return if @category
-    flash[:notice] = t("controller.category.not_found")
-    redirect_to admin_categories_path
-  end
-
   def check_root_category
-    params[:id] == "0" ? @category = 0 : find_category
+    params[:id] == "0" ? @category = 0 : ""
   end
 end

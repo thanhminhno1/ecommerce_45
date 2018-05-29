@@ -19,7 +19,8 @@ body
       ul.nav.navbar-top-links.navbar-right
         li.dropdown
           a.dropdown-toggle data-toggle="dropdown" href="#"
-            = current_user.name
+            -if current_user
+              = current_user.name
             i.fa.fa-user.fa-fw
             i.fa.fa-caret-down
           ul.dropdown-menu.dropdown-user

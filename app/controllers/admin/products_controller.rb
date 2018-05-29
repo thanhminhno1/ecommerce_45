@@ -1,8 +1,9 @@
 class Admin::ProductsController < Admin::BaseController
   include ApplicationHelper
 
+  load_and_authorize_resource
+
   before_action :find_category, except: %i(import_process import)
-  before_action :find_product, only: %i(edit update show destroy)
 
   def index
     @params_search = params[:product] || {name_or_desc: ""}
@@ -74,13 +75,6 @@ class Admin::ProductsController < Admin::BaseController
     @category = Category.find_by id: params[:category_id]
     return if @category
     flash[:notice] = t("controller.category.not_found")
-    redirect_to admin_categories_path
-  end
-
-  def find_product
-    @product = Product.find_by id: params[:id]
-    return if @product
-    flash[:notice] = t("controller.product.not_found")
     redirect_to admin_categories_path
   end
 end
