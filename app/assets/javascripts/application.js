@@ -20,3 +20,6 @@
 //= require i18n.js
 //= require i18n/translations
 //= require starrr
+//= require Chart.bundle
+//= require chartkick
+//= require bootstrap-datepicker

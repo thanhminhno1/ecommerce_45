@@ -108,7 +108,6 @@ $(document).on('turbolinks:load', function() {
     }
   }
 
-
   new_total();
 
   $('.gotop').click(function() {
@@ -170,4 +169,32 @@ $(document).on('turbolinks:load', function() {
   $('#file').change(function(){
     checkfile($(this));
   })
+
+  $('.datepicker').datepicker({
+  });
+
+  $('.yearpicker').datepicker({
+    format: 'yyyy',
+    viewMode: 'years',
+    minViewMode: 'years'
+  });
+
+  $('.monthpicker').datepicker({
+    format: 'mm/yyyy',
+    viewMode: 'months',
+    minViewMode: 'months'
+  });
+
+  $('input[name="type"]').change(function(){
+    $(this).parents('.form-horizontal').find('.form-control').attr('disabled', true);
+    $(this).parents('.form-group').find('.form-control').removeAttr('disabled');
+  });
+
+  $('#from_date, #to_date').change(function(){
+    if($('#from_date').val() != '' && $('#to_date').val() != '' && $('#from_date').val() > $('#to_date').val())
+    {
+      alert(I18n.t('client.confirm.invalid_date_range'));
+      $('#from_date').val($('#to_date').val());
+    }
+  });
 });
