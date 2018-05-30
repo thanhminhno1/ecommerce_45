@@ -197,4 +197,11 @@ $(document).on('turbolinks:load', function() {
       $('#from_date').val($('#to_date').val());
     }
   });
+
+  $('.quantity_in_cart').change(function(){
+    if($(this).val() > $(this).attr('max'))
+    {
+      $(this).val($(this).attr('max'));
+    }
+  })
 });

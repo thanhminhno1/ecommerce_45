@@ -1,0 +1,14 @@
+tr
+  td = order.products_name
+  td = order.total
+  td = order.created_at.strftime(Settings.order.format_time)
+  td
+    -if order.approved?
+      .btn.btn-success
+        = t("layout.order.#{order.status}")
+    -elsif order.rejected?
+      .btn.btn-danger
+        = t("layout.order.#{order.status}")
+    -else
+      .btn.btn-default
+        = t("layout.order.#{order.status}")
