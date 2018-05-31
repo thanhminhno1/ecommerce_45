@@ -6,7 +6,7 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :create, Order
+      can [:index, :create , :order_history], Order
       can :show, Order, user_id: user.id
       can :create, OrderDetail
       can :read, OrderDetail

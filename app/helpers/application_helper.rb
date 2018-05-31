@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def current_cart
-    return unless session[:cart]
+    return {} unless session[:cart]
     session[:cart].delete_if{|key, value| value.zero?}
     @current_cart ||= Product.product_in_cart(session[:cart].keys)
     @current_cart.map do |item|
@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def total_cart
-    session[:cart].values.reduce(:+)
+    session[:cart] ? session[:cart].values.reduce(:+) : 0
   end
 
   def check_rated product

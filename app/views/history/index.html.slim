@@ -1,0 +1,20 @@
+.container
+  = render "layouts/home_header"
+  .row
+    = render "layouts/sidebar"
+    .col-md-9
+      .row
+        .span12
+          .well
+            .row
+              h3.text-center = t("layout.order.my_oder_history")
+              table.table.table-bordered
+                thead
+                  tr
+                    th = t("layout.order.products_name")
+                    th = t("layout.order.total_price")
+                    th = t("layout.order.date")
+                    th = t("layout.order.status")
+                tbody
+                  = render partial: "history", collection: @orders, as: :order
+  = render "layouts/section"

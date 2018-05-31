@@ -23,3 +23,6 @@ en:
       order_infor: "Order Information"
       order_details: "Order Details"
       name_address_email: "Name, Address, Email"
+      my_oder_history: "My Order History"
+      products_name: "Products Name"
+      total_price: "Total Price"

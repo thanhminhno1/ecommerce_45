@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   put "update_hard_cart", to: "sessions#update_hard_cart", as: :update_hard_cart
 
   resources :orders, only: %i(index create)
+  resources :history, only: :index
   resources :products, only: %i(index show)
   resources :categories, only: :show
   namespace :admin do

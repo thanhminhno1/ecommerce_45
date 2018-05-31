@@ -27,7 +27,10 @@ class Order < ApplicationRecord
   scope :range, ->(start_date, end_date){where updated_at: start_date..end_date}
   scope :by_year, ->(day_of_year){where updated_at: day_of_year.beginning_of_year..day_of_year.end_of_year}
   scope :by_month, ->(day_of_month){where updated_at: day_of_month.beginning_of_month..day_of_month.end_of_month}
-
+  scope :data_history, ->{joins(:order_details).joins(order_details: :product)
+                          .select("orders.user_id, GROUP_CONCAT(' ', products.name, '(', order_details.quantity, ')')
+                          as products_name, orders.id, orders.created_at, orders.status,
+                          sum(order_details.price*order_details.quantity) as total")}
   def created_format
     created_at.strftime(Settings.order.format_time)
   end

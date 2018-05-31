@@ -3,8 +3,10 @@ class OrdersController < ApplicationController
 
   layout "home"
 
-  before_action :ensure_login, only: %i(index create)
+  before_action :authenticate_user!
   before_action :check_available_product_to_order, only: %i(index create)
+
+  authorize_resource
 
   def index
     @order = Order.new

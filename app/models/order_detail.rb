@@ -1,5 +1,5 @@
 class OrderDetail < ApplicationRecord
-  belongs_to :product
+  belongs_to :product, ->{with_deleted}
   belongs_to :order
 
   validates :price, presence: true
