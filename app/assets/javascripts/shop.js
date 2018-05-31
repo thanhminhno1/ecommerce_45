@@ -204,4 +204,10 @@ $(document).on('turbolinks:load', function() {
       $(this).val($(this).attr('max'));
     }
   })
+
+  $('#search_button').click(function(){
+    $('#clone').html('');
+    $('#clone').append($('.clone-item').clone().attr('type', 'hidden'));
+    $('#product_search').submit();
+  })
 });

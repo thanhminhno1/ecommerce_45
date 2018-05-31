@@ -54,6 +54,7 @@ gem "roo", "~> 2.7.0"
 gem "rubocop"
 gem "simple_enum"
 gem "slim-rails", "3.1.1"
+gem "ransack"
 gem "whenever", require: false
 
 group :development, :test do

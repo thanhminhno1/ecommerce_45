@@ -3,6 +3,18 @@
     ul.nav.nav-list.nav-category
       = render partial: "layouts/categories_list", collection: list_category, as: :category
   br
+  .well-small.well
+    h4.text-center = t("layout.home.price_range")
+    = search_form_for @q, url: products_path, html: {class: "", method: :get} do |f|
+      .form-group.row
+        .col-md-6
+          =f.search_field :price_gteq, type: "number", class: "form-control clone-item", placeholder: t("layout.home.from")
+        .col-md-6
+          =f.search_field :price_lteq, type: "number", class: "form-control clone-item", placeholder: t("layout.home.to")
+      .form-group.row
+        .col-md-12
+          =f.button id: "search_button", type: "button", class: "btn btn-default"
+            = t("layout.home.search")
   ul.nav.nav-list.promowrapper
     -if recently_product
       -recently_product.each do |product|

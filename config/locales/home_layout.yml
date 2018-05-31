@@ -25,3 +25,7 @@ en:
       title: "Ecommerce 45"
       out_of_stock: "Out of stock"
       history: "History"
+      from: "From"
+      to: "To"
+      price_range: "Price Range"
+      search: "Search"
