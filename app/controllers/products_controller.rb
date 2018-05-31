@@ -4,8 +4,7 @@ class ProductsController < ApplicationController
   layout "home"
 
   def index
-    @params_search = params[:product] || {name: ""}
-    @products = Product.by_name(@params_search[:name]).page(params[:page])
+    @products = @q.result(distinct: true).page(params[:page])
                        .per(Settings.order.per_page)
   end
 
