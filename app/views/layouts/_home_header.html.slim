@@ -63,3 +63,6 @@
                           label
                             = f.check_box :remember_me
                             = t("layout.session.keep_login")
+                        = link_to t("layout.devise.sign_in_w_fb"), user_facebook_omniauth_authorize_path
+                        br
+                        = link_to t("layout.devise.sign_in_w_gg"), user_google_oauth2_omniauth_authorize_path

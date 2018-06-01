@@ -5,7 +5,7 @@
   br
   .well-small.well
     h4.text-center = t("layout.home.price_range")
-    = search_form_for @q, url: products_path, html: {class: "", method: :get} do |f|
+    = search_form_for @q, url: products_path, html: {id: "product", method: :get} do |f|
       .form-group.row
         .col-md-6
           =f.search_field :price_gteq, type: "number", class: "form-control clone-item", placeholder: t("layout.home.from")

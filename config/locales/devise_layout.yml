@@ -8,6 +8,8 @@ en:
       new_pass: "New password"
       confirm_pass: "Confirm new password"
       change_my_pass: "Change my password"
+      sign_in_w_fb: "Sign in with Facebook"
+      sign_in_w_gg: "Sign in with Google"
   email:
     devise:
       hello: "Hello"
