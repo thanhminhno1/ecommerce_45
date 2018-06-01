@@ -53,7 +53,8 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.middleware.use I18n::JS::Middleware
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
    :address              => "smtp.gmail.com",

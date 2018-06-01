@@ -55,6 +55,7 @@ gem "paperclip"
 gem "paranoia", "~> 2.2"
 gem "roo", "~> 2.7.0"
 gem "rubocop"
+gem "sidekiq"
 gem "simple_enum"
 gem "slim-rails", "3.1.1"
 gem "ransack"
@@ -63,6 +64,7 @@ gem "whenever", require: false
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"
+  gem "letter_opener"
   gem "selenium-webdriver"
 end
 

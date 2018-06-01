@@ -18,7 +18,8 @@ class Admin::OrdersController < Admin::BaseController
 
   def approve
     @order.approved!
-    OrderMailer.approved_email(@order.user).deliver
+    # OrderMailer.approved_email(@order.user).deliver
+    ApproveMailWorker.perform_async(@order.id.to_s)
     redirect_to admin_order_path(@order), success: t("controller.order.approve_success")
   end
 
@@ -29,7 +30,8 @@ class Admin::OrdersController < Admin::BaseController
       redirect_to admin_order_path(@order), notice: t("controller.order.error_update")
       return
     end
-    OrderMailer.rejected_email(@order.user).deliver
+    # OrderMailer.rejected_email(@order.user).deliver
+    RejectMailWorker.perform_async(@order.id.to_s)
     redirect_to admin_order_path(@order), success: t("controller.order.reject_success")
   end
 
